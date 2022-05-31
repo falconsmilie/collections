@@ -2,29 +2,54 @@
 
 namespace App\Model;
 
-use App\Collection\CollectionInterface;
-
-class Food implements CollectionInterface
+class Food extends Model
 {
-    protected array $items;
+    private const UNIT_KILOGRAMS = 'kg';
+    private const UNIT_GRAMS = 'g';
 
-    public function add()
+    protected int $id;
+    protected string $name;
+    protected string $type;
+    protected int $quantity;
+    protected string $unit;
+
+    public function __construct(array $attributes = [])
     {
-        // TODO: Implement add() method.
+        parent::__construct($attributes);
+
+        $this->convertToGrams();
     }
 
-    public function remove()
+    public function convertToGrams()
     {
-        // TODO: Implement remove() method.
+        if ($this->unit === self::UNIT_KILOGRAMS) {
+            $this->quantity *= 1000;
+            $this->unit = self::UNIT_GRAMS;
+        }
     }
 
-    public function list()
+    public function setId(int $id): void
     {
-        // TODO: Implement list() method.
+        $this->id = $id;
     }
 
-    public function search()
+    public function setName(string $name): void
     {
-        // TODO: Implement search() method.
+        $this->name = $name;
+    }
+
+    public function setType(string $type): void
+    {
+        $this->type = $type;
+    }
+
+    public function setQuantity(int $quantity): void
+    {
+        $this->quantity = $quantity;
+    }
+
+    public function setUnit(string $unit): void
+    {
+        $this->unit = $unit;
     }
 }
