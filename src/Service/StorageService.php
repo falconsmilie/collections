@@ -2,8 +2,8 @@
 
 namespace App\Service;
 
-
 use App\Collection\Collection;
+use App\Model\Food;
 use App\Model\Fruit;
 use App\Model\Vegetable;
 
@@ -25,7 +25,7 @@ class StorageService
         return $this->request;
     }
 
-    public function process()
+    public function process(): void
     {
         $this->fruit = $this->collection
             ->filter(fn($item) => $item->type === 'fruit')
@@ -34,5 +34,32 @@ class StorageService
         $this->vegetables = $this->collection
             ->filter(fn($item) => $item->type === 'vegetable')
             ->map(fn($item) => new Vegetable((array)$item));
+
+        $newFruit = [
+            'id' => 21,
+            'name' => 'Pineapple',
+            'type' => 'fruit',
+            'quantity' => 15,
+            'unit' => 'kg'
+        ];
+        $this->fruit[] = new Fruit($newFruit);
+
+        $pineapple = $this->fruit->search(fn($item) => $item->getName() === 'Pineapple');
+        var_dump($this->fruit[$pineapple]);
+        unset($this->fruit[$pineapple]);
+
+        $this->fruit->each(fn($item) => $item->convertUnit(Food::UNIT_KILOGRAMS));
+
+        var_dump($this->fruit);
+    }
+
+    public function getFruit(): Collection
+    {
+        return $this->fruit;
+    }
+
+    public function getVegetables(): Collection
+    {
+        return $this->vegetables;
     }
 }

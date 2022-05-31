@@ -15,6 +15,8 @@ class StorageServiceTest extends TestCase
 
         $storageService = new StorageService($request, new Collection($items));
 
+        $storageService->process();
+
         $this->assertNotEmpty($storageService->getRequest());
         $this->assertIsString($storageService->getRequest());
     }
