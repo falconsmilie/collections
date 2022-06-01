@@ -34,23 +34,14 @@ class StorageService
         $this->vegetables = $this->collection
             ->filter(fn($item) => $item->type === 'vegetable')
             ->map(fn($item) => new Vegetable((array)$item));
+//
+//        $pineapple = $this->fruit->search(fn($item) => $item->getName() === 'Pineapple');
+//        var_dump($this->fruit[$pineapple]);
+//        unset($this->fruit[$pineapple]);
+//
+//        $this->fruit->each(fn($item) => $item->convertUnit(Food::UNIT_KILOGRAMS));
 
-        $newFruit = [
-            'id' => 21,
-            'name' => 'Pineapple',
-            'type' => 'fruit',
-            'quantity' => 15,
-            'unit' => 'kg'
-        ];
-        $this->fruit[] = new Fruit($newFruit);
-
-        $pineapple = $this->fruit->search(fn($item) => $item->getName() === 'Pineapple');
-        var_dump($this->fruit[$pineapple]);
-        unset($this->fruit[$pineapple]);
-
-        $this->fruit->each(fn($item) => $item->convertUnit(Food::UNIT_KILOGRAMS));
-
-        var_dump($this->fruit);
+//        var_dump($this->fruit);
     }
 
     public function getFruit(): Collection
