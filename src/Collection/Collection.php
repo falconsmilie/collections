@@ -4,10 +4,11 @@ namespace App\Collection;
 
 use ArrayAccess;
 use ArrayIterator;
+use Countable;
 use IteratorAggregate;
 use Traversable;
 
-class Collection implements ArrayAccess, IteratorAggregate
+class Collection implements ArrayAccess, IteratorAggregate, Countable
 {
     protected array $items;
 
@@ -104,5 +105,10 @@ class Collection implements ArrayAccess, IteratorAggregate
     public function offsetUnset(mixed $offset): void
     {
         unset($this->items[$offset]);
+    }
+
+    public function count(): int
+    {
+        return count($this->items);
     }
 }
