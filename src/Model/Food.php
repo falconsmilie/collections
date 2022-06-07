@@ -2,6 +2,9 @@
 
 namespace App\Model;
 
+/**
+ * One concern here is there is only support for grams/kilograms, not e.g. tons, or liquid measurements.
+ */
 class Food extends Model
 {
     public const UNIT_KILOGRAMS = 'kg';
@@ -11,7 +14,7 @@ class Food extends Model
     protected string $name;
     protected string $type;
     protected float $quantity;  // This is the weight
-    protected string $unit;     // This is the unit of weight measurement
+    protected string $unit;     // This is the unit of weight
 
     public function __construct(array $attributes = [])
     {
