@@ -33,6 +33,10 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable
         return $this;
     }
 
+    /**
+     * User can call, unset($this->collection[$key]), from where the collection is instantiated/available.
+     * This method just provides a clean interface for doing so.
+     */
     public function remove($key)
     {
         if ($this->offsetExists($key)) {
@@ -61,15 +65,15 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable
         return $this;
     }
 
-    public function search(callable $value, bool $strict = true): bool|int|string
+    public function search(callable $callable, bool $strict = true): bool|int|string
     {
-        //  if (is_string($value)) {
-        //      return array_search($value, $this->items, $strict);
+        //  if (is_string($callable)) {
+        //      return array_search($callable, $this->items, $strict);
         //  }
 
-        if (is_callable($value)) {
+        if (is_callable($callable)) {
             foreach ($this->items as $key => $item) {
-                if ($value($item, $key)) {
+                if ($callable($item, $key)) {
                     return $key;
                 }
             }
