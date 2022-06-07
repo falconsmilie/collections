@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Collection\Collection;
-use App\Model\Food;
 use App\Model\Fruit;
 use App\Model\Vegetable;
 
