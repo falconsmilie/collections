@@ -35,11 +35,6 @@ class StorageService
             ->map(fn($item) => new Vegetable((array)$item));
     }
 
-    public function getFood(): Collection
-    {
-        return $this->collection;
-    }
-
     public function getFruit(): Collection
     {
         return $this->fruit;

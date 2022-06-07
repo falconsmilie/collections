@@ -114,18 +114,29 @@ class StorageServiceTest extends TestCase
     /**
      * This test should be in a test for the Model, not the Collection.
      */
-    public function canConvertUnits()
+    public function testCanConvertUnits()
     {
         $storageService = $this->getStorageService();
         $storageService->process();
 
-        $food = $storageService->getFood();
+        $fruit = $storageService->getFruit();
 
-        $convertedFoodKilograms = $food->each(fn($item) => $item->convertUnit(Food::UNIT_KILOGRAMS));
+        $convertedFoodKilograms = $fruit
+            ->each(fn($item) => $item->convertUnit(Food::UNIT_KILOGRAMS))
+            ->filter(fn($item) => $item->getUnit() === Food::UNIT_KILOGRAMS);
+
+        $convertedFoodGrams = $convertedFoodKilograms
+            ->each(fn($item) => $item->convertUnit(Food::UNIT_GRAMS))
+            ->filter(fn($item) => $item->getUnit() === Food::UNIT_GRAMS);
 
         $this->assertSame(
-            count($food),
-            count($convertedFoodKilograms->filter(fn($item) => $item->getUnit() === Food::UNIT_KILOGRAMS))
+            count($fruit),
+            count($convertedFoodKilograms)
+        );
+
+        $this->assertSame(
+            count($fruit),
+            count($convertedFoodGrams)
         );
     }
 
