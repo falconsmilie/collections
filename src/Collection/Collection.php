@@ -35,7 +35,7 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable
 
     /**
      * User can call, unset($this->collection[$key]), from where the collection is instantiated/available.
-     * This method just provides a clean interface for doing so.
+     * This method just provides an expressive alternative for doing so.
      */
     public function remove($key)
     {
@@ -65,6 +65,9 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable
         return $this;
     }
 
+    /**
+     * TODO: add support for string/array_search
+     */
     public function search(callable $callable, bool $strict = true): bool|int|string
     {
         //  if (is_string($callable)) {
