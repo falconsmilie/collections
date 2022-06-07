@@ -3,6 +3,7 @@
 namespace App\Tests\App\Service;
 
 use App\Collection\Collection;
+use App\Model\Food;
 use App\Model\Fruit;
 use App\Model\Vegetable;
 use App\Service\StorageService;
@@ -108,6 +109,24 @@ class StorageServiceTest extends TestCase
         unset($fruit[$fruitToRemove]);
 
         $this->assertSame(9, count($fruit));
+    }
+
+    /**
+     * This test should be in a test for the Model, not the Collection.
+     */
+    public function canConvertUnits()
+    {
+        $storageService = $this->getStorageService();
+        $storageService->process();
+
+        $food = $storageService->getFood();
+
+        $convertedFoodKilograms = $food->each(fn($item) => $item->convertUnit(Food::UNIT_KILOGRAMS));
+
+        $this->assertSame(
+            count($food),
+            count($convertedFoodKilograms->filter(fn($item) => $item->getUnit() === Food::UNIT_KILOGRAMS))
+        );
     }
 
     private function getStorageService(): StorageService
