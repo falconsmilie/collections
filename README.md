@@ -1,4 +1,4 @@
-# Fruits and Vegetables
+# Fruit and Vegetables
 
 ## Goal
 We want to build a service which will take a `request.json` and:
@@ -7,6 +7,31 @@ We want to build a service which will take a `request.json` and:
 * Units have to be stored as grams;
 * As a bonus you might consider giving option to decide which units are returned (kilograms/grams);
 * As a bonus you might consider how to implement `search()` method collections;
+
+## Approach
+To use Declarative instead of Imperative wherever possible.
+
+Imperative;
+```php
+function getUserEmails($users)
+{
+    $emails = [];
+    
+    for ($i = 0; $i < count($users); $i++) {
+        $user = $users[$i];
+        
+        if ($user->email !== null) {
+            $emails[] = $user->email;
+        }
+    }
+
+    return $emails;
+}
+```
+Declarative;
+```mysql
+SELECT email FROM users WHERE email IS NOT NULL
+```
 
 ## How can I check if my code is working?
 You have two ways of moving on:
