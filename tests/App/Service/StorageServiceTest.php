@@ -16,7 +16,7 @@ class StorageServiceTest extends TestCase
 
     public static function setupBeforeClass(): void
     {
-        self::$request = file_get_contents('request.json');
+        self::$request = file_get_contents('tests/App/Service/request.json');
         self::$collectionItems = json_decode(self::$request);
     }
 
@@ -112,7 +112,7 @@ class StorageServiceTest extends TestCase
     }
 
     /**
-     * This test should be in a test for the Model, not the Collection.
+     * This test should be in a test for the Model, not the Collection???
      */
     public function testCanConvertUnits()
     {
