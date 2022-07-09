@@ -9,14 +9,14 @@ use App\Model\Vegetable;
 class StorageService
 {
     private string $request;
-    private Collection $collection;
+    private Collection $fruitAndVegetables;
     private Collection $fruit;
     private Collection $vegetables;
 
-    public function __construct(string $request, Collection $collection)
+    public function __construct(string $request, Collection $fruitAndVegetables)
     {
         $this->request = $request;
-        $this->collection = $collection;
+        $this->fruitAndVegetables = $fruitAndVegetables;
     }
 
     public function getRequest(): string
@@ -26,11 +26,11 @@ class StorageService
 
     public function process(): void
     {
-        $this->fruit = $this->collection
+        $this->fruit = $this->fruitAndVegetables
             ->filter(fn($item) => $item->type === 'fruit')
             ->map(fn($item) => new Fruit((array)$item));
 
-        $this->vegetables = $this->collection
+        $this->vegetables = $this->fruitAndVegetables
             ->filter(fn($item) => $item->type === 'vegetable')
             ->map(fn($item) => new Vegetable((array)$item));
     }
