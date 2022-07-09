@@ -65,15 +65,8 @@ class Collection implements ArrayAccess, IteratorAggregate, Countable
         return $this;
     }
 
-    /**
-     * TODO: add support for string/array_search
-     */
-    public function search(callable $callable, bool $strict = true): bool|int|string
+    public function search(callable $callable): bool|int|string
     {
-        //  if (is_string($callable)) {
-        //      return array_search($callable, $this->items, $strict);
-        //  }
-
         if (is_callable($callable)) {
             foreach ($this->items as $key => $item) {
                 if ($callable($item, $key)) {
