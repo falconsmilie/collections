@@ -30,5 +30,5 @@ function getUserEmails($users)
 ```
 Declarative;
 ```php
-$users->filter(fn($item) => $item->email !== null);
+$emails = $users->filter(fn($item) => $item->email !== null);
 ```
