@@ -1,5 +1,7 @@
 # Fruit and Vegetables
 
+## Preface
+Found this "test" over at this [repository](https://github.com/tturkowski/fruits-and-vegetables/blob/main/src/Service/StorageService.php).
 ## Goal
 We want to build a service which will take a `request.json` and:
 * Process the file and create two separate collections for `Fruits` and `Vegetables`
