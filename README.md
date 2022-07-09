@@ -29,8 +29,8 @@ function getUserEmails($users)
 }
 ```
 Declarative;
-```mysql
-SELECT email FROM users WHERE email IS NOT NULL
+```php
+$users->filter(fn($item) => $item->email !== null);
 ```
 
 ## How can I check if my code is working?
