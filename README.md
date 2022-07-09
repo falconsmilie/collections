@@ -32,37 +32,3 @@ Declarative;
 ```php
 $users->filter(fn($item) => $item->email !== null);
 ```
-
-## How can I check if my code is working?
-You have two ways of moving on:
-* You call the Service from PHPUnit test like it's done in dummy test
-
-or
-
-* You create a Controller which will be calling the service with a json payload
-
-## Pulling image
-```bash
-docker pull tturkowski/fruits-and-vegetables
-```
-
-## Building image
-```bash
-docker build -t tturkowski/fruits-and-vegetables -f docker/Dockerfile .
-```
-
-## Running container
-```bash
-docker run -it -w/app -v$(pwd):/app tturkowski/fruits-and-vegetables sh 
-```
-
-## Running tests
-```bash
-docker run -it -w/app -v$(pwd):/app tturkowski/fruits-and-vegetables bin/phpunit
-```
-
-## Run development server
-```bash
-docker run -it -w/app -v$(pwd):/app -p8080:8080 tturkowski/fruits-and-vegetables php -S 0.0.0.0:8080 -t /app/public
-# Open http://127.0.0.1:8080 in your browser
-```
